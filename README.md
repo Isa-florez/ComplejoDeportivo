@@ -254,3 +254,4 @@ All errors follow a consistent response format:
 Developed as part of the **LogiTech Solutions** backend assessment for MegaStore Global's data modernization initiative.
 # ComplejoDeportivo
 # ComplejoDeportivo
+# ComplejoDeportivo

@@ -1,0 +1,36 @@
+@model List<ComplejoDeportivo.Models.Entities.Usuario>
+
+<div class="topbar">
+    <div class="page-title">Usuarios</div>
+    <a href="/Usuario/Create" class="btn btn-green">+ Nuevo Usuario</a>
+</div>
+
+<div class="card">
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Fecha Registro</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.Nombre</td>
+                <td>@usuario.Documento</td>
+                <td>@usuario.Telefono</td>
+                <td>@usuario.Email</td>
+                <td>@usuario.FechaRegistro.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a href="/Usuario/Edit/@usuario.Id" class="btn btn-yellow">Editar</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

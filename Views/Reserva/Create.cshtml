@@ -1,0 +1,48 @@
+@model ComplejoDeportivo.Models.Entities.Reserva
+
+<div class="topbar">
+    <div class="page-title">Nueva Reserva</div>
+    <a href="/Usuario" class="btn btn-gray">← Volver</a>
+</div>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert-error">@ViewBag.Error</div>
+}
+
+<div class="card" style="max-width:500px;">
+    <form method="post" action="/Reserva/Create">
+        <div class="form-group">
+            <label>Usuario</label>
+            <select name="UsuarioId" required>
+                <option value="">Selecciona un usuario</option>
+                @foreach (var usuario in ViewBag.Usuarios)
+                {
+                    <option value="@usuario.Id">@usuario.Nombre</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Espacio Deportivo</label>
+            <select name="EspacioDeportivoId" required>
+                <option value="">Selecciona un espacio</option>
+                @foreach (var espacio in ViewBag.Espacios)
+                {
+                    <option value="@espacio.Id">@espacio.Nombre — @espacio.Tipo</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Hora Inicio</label>
+            <input type="datetime-local" name="HoraInicio" required />
+        </div>
+        <div class="form-group">
+            <label>Hora Fin</label>
+            <input type="datetime-local" name="HoraFin" required />
+        </div>
+        <div style="display:flex;gap:10px;margin-top:8px;">
+            <button type="submit" class="btn btn-green">Guardar</button>
+            <a href="/Usuario" class="btn btn-gray">Cancelar</a>
+        </div>
+    </form>
+</div>

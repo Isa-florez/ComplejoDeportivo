@@ -1,0 +1,45 @@
+@model List<ComplejoDeportivo.Models.Entities.Reserva>
+
+<div class="topbar">
+    <div class="page-title">Detalle de Reservas</div>
+    <a href="/Usuario" class="btn btn-gray">← Volver</a>
+</div>
+
+<div class="card">
+    <table>
+        <thead>
+        <tr>
+            <th>Espacio</th>
+            <th>Fecha</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+            <th>Estado</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var reserva in Model)
+        {
+            <tr>
+                <td>@reserva.EspacioDeportivo?.Nombre</td>
+                <td>@reserva.Fecha.ToString("dd/MM/yyyy")</td>
+                <td>@reserva.HoraInicio.ToString("HH:mm")</td>
+                <td>@reserva.HoraFin.ToString("HH:mm")</td>
+                <td>
+                    @if (reserva.Estado == ComplejoDeportivo.Models.Enums.EstadoReserva.Activa)
+                    {
+                        <span style="background:#dcfce7;color:#15803d;padding:4px 10px;border-radius:20px;font-size:12px;">Activa</span>
+                    }
+                    else if (reserva.Estado == ComplejoDeportivo.Models.Enums.EstadoReserva.Cancelada)
+                    {
+                        <span style="background:#fee2e2;color:#dc2626;padding:4px 10px;border-radius:20px;font-size:12px;">Cancelada</span>
+                    }
+                    else
+                    {
+                        <span style="background:#f3f4f6;color:#6b7280;padding:4px 10px;border-radius:20px;font-size:12px;">Finalizada</span>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

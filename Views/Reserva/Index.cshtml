@@ -1,0 +1,58 @@
+@model List<ComplejoDeportivo.Models.Entities.Reserva>
+
+<div class="topbar">
+    <div class="page-title">Reservas</div>
+    <a href="/Reserva/Create" class="btn btn-green">+ Nueva Reserva</a>
+</div>
+
+<div class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Espacio</th>
+                <th>Fecha</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reserva in Model)
+            {
+                <tr>
+                    <td>@reserva.Usuario?.Nombre</td>
+                    <td>@reserva.EspacioDeportivo?.Nombre</td>
+                    <td>@reserva.Fecha.ToString("dd/MM/yyyy")</td>
+                    <td>@reserva.HoraInicio.ToString("HH:mm")</td>
+                    <td>@reserva.HoraFin.ToString("HH:mm")</td>
+                    <td>
+                        @if (reserva.Estado == ComplejoDeportivo.Models.Enums.EstadoReserva.Activa)
+                        {
+                            <span style="background:#dcfce7;color:#15803d;padding:4px 10px;border-radius:20px;font-size:12px;">Activa</span>
+                        }
+                        else if (reserva.Estado == ComplejoDeportivo.Models.Enums.EstadoReserva.Cancelada)
+                        {
+                            <span style="background:#fee2e2;color:#dc2626;padding:4px 10px;border-radius:20px;font-size:12px;">Cancelada</span>
+                        }
+                        else
+                        {
+                            <span style="background:#f3f4f6;color:#6b7280;padding:4px 10px;border-radius:20px;font-size:12px;">Finalizada</span>
+                        }
+                    </td>
+                    <td>
+                        @if (reserva.Estado == ComplejoDeportivo.Models.Enums.EstadoReserva.Activa)
+                        {
+                            <form method="post" action="/Reserva/Cancelar" style="display:inline;">
+                                <input type="hidden" name="id" value="@reserva.Id" />
+                                <input type="hidden" name="usuarioId" value="@reserva.UsuarioId" />
+                                <button type="submit" class="btn btn-red">Cancelar</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

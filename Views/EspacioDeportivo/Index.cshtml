@@ -1,0 +1,43 @@
+@model List<ComplejoDeportivo.Models.Entities.EspacioDeportivo>
+
+<div class="topbar">
+    <div class="page-title">Espacios Deportivos</div>
+    <a href="/EspacioDeportivo/Create" class="btn btn-green">+ Nuevo Espacio</a>
+</div>
+
+<div class="card" style="margin-bottom:16px;">
+    <form method="get" action="/EspacioDeportivo" style="display:flex;gap:10px;align-items:flex-end;">
+        <div class="form-group" style="margin:0;flex:1;">
+            <label>Filtrar por tipo</label>
+            <input type="text" name="tipo" placeholder="Ej: fútbol, piscina..." />
+        </div>
+        <button type="submit" class="btn btn-green">Filtrar</button>
+        <a href="/EspacioDeportivo" class="btn btn-gray">Limpiar</a>
+    </form>
+</div>
+
+<div class="card">
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Capacidad</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var espacio in Model)
+        {
+            <tr>
+                <td>@espacio.Nombre</td>
+                <td>@espacio.Tipo</td>
+                <td>@espacio.Capacidad personas</td>
+                <td>
+                    <a href="/EspacioDeportivo/Edit/@espacio.Id" class="btn btn-yellow">Editar</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
